@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block content %}
+<div class="section"><div class="patient-head"><div><h2>المرضى</h2><div class="muted">إدارة ملفات المرضى والبحث السريع</div></div><a class="btn" href="{{url_for('new_patient')}}">➕ مريض جديد</a></div></div>
+<form class="search" method="get"><input name="q" value="{{q}}" placeholder="ابحث بالاسم أو رقم الملف أو الهاتف أو الهوية"><button class="btn">بحث</button></form>
+<div class="section"><div class="table-wrap"><table class="table"><tr><th>الملف</th><th>الاسم</th><th>الجنس</th><th>الهاتف</th><th>تاريخ الميلاد</th><th></th></tr>
+{% for p in patients %}<tr><td>{{p.file_no}}</td><td>{{p.full_name}}</td><td>{{p.gender}}</td><td>{{p.phone}}</td><td>{{p.birth_date}}</td><td><a class="btn secondary" href="{{url_for('patient_detail',patient_id=p.id)}}">فتح</a></td></tr>
+{% else %}<tr><td colspan="6">لا توجد نتائج.</td></tr>{% endfor %}</table></div></div>{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block public %}
+<div class="login"><div class="login-box">
+<h1>👁️ عيادة طب وجراحة العيون</h1><p class="muted">تسجيل الدخول إلى نظام الإدارة</p>
+{% with messages=get_flashed_messages(with_categories=true) %}{% for category,msg in messages %}<div class="notice {{category}}">{{msg}}</div>{% endfor %}{% endwith %}
+<form method="post"><div class="field"><label>اسم المستخدم</label><input name="username" required></div><br>
+<div class="field"><label>كلمة المرور</label><input type="password" name="password" required></div><br>
+<button class="btn" style="width:100%">دخول</button></form>
+<p class="muted" style="margin-top:18px">للتجربة: admin / admin123</p>
+</div></div>{% endblock %}

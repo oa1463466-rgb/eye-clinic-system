@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>نظام عيادة العيون</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+{% if session.get('logged_in') %}
+<header class="topbar"><div class="brand">👁️ نظام إدارة عيادة طب وجراحة العيون</div><div class="user">المستخدم: {{session.get('username')}} &nbsp; | &nbsp; {{now}}</div></header>
+<div class="layout">
+<aside class="sidebar">
+<a href="{{url_for('index')}}">🏠 الرئيسية</a>
+<a href="{{url_for('patients')}}">👥 المرضى</a>
+<a href="{{url_for('new_patient')}}">➕ تسجيل مريض</a>
+<a href="#">📅 المواعيد</a><a href="#">🔬 الفحوصات</a><a href="#">👁️ العمليات الجراحية</a>
+<a href="#">👓 النظارات والعدسات</a><a href="#">💊 الوصفات الطبية</a><a href="#">💰 الحسابات</a>
+<a href="#">📦 المخزن</a><a href="#">📊 التقارير</a><a href="{{url_for('logout')}}">🚪 تسجيل الخروج</a>
+</aside>
+<main class="main">
+{% with messages=get_flashed_messages(with_categories=true) %}
+{% for category,msg in messages %}<div class="notice {{category}}">{{msg}}</div>{% endfor %}
+{% endwith %}
+{% block content %}{% endblock %}
+</main></div>
+{% else %}{% block public %}{% endblock %}{% endif %}
+</body></html>

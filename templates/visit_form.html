@@ -1,0 +1,27 @@
+{% extends "base.html" %}{% block content %}
+<div class="section"><h2>👁️ زيارة وفحص عيون</h2><div class="muted">{{patient.full_name}} — {{patient.file_no}}</div></div>
+<form method="post">
+<div class="section"><h3>الشكوى والتاريخ المرضي</h3><div class="form-grid">
+<div class="field full"><label>الشكوى الرئيسية</label><textarea name="chief_complaint"></textarea></div>
+<div class="field full"><label>التاريخ المرضي / HPI</label><textarea name="history"></textarea></div></div></div>
+<div class="section"><h3>فحص العينين</h3><div class="eyes">
+<div class="eye"><h3>OD — العين اليمنى</h3><div class="form-grid">
+<div class="field"><label>VA حدة البصر</label><input name="va_od"></div><div class="field"><label>IOP ضغط العين</label><input name="iop_od"></div>
+<div class="field"><label>SPH</label><input name="sph_od"></div><div class="field"><label>CYL</label><input name="cyl_od"></div>
+<div class="field"><label>AXIS</label><input name="axis_od"></div><div class="field"><label>ADD</label><input name="add_od"></div>
+<div class="field full"><label>Slit Lamp</label><textarea name="slit_lamp_od"></textarea></div>
+<div class="field full"><label>Fundus</label><textarea name="fundus_od"></textarea></div></div></div>
+<div class="eye"><h3>OS — العين اليسرى</h3><div class="form-grid">
+<div class="field"><label>VA حدة البصر</label><input name="va_os"></div><div class="field"><label>IOP ضغط العين</label><input name="iop_os"></div>
+<div class="field"><label>SPH</label><input name="sph_os"></div><div class="field"><label>CYL</label><input name="cyl_os"></div>
+<div class="field"><label>AXIS</label><input name="axis_os"></div><div class="field"><label>ADD</label><input name="add_os"></div>
+<div class="field full"><label>Slit Lamp</label><textarea name="slit_lamp_os"></textarea></div>
+<div class="field full"><label>Fundus</label><textarea name="fundus_os"></textarea></div></div></div>
+</div></div>
+<div class="section"><h3>التشخيص والعلاج</h3><div class="form-grid">
+<div class="field full"><label>التشخيص</label><textarea name="diagnosis"></textarea></div>
+<div class="field full"><label>العلاج / الوصفة</label><textarea name="treatment"></textarea></div>
+<div class="field full"><label>المتابعة</label><textarea name="follow_up"></textarea></div>
+</div></div>
+<button class="btn success">💾 حفظ الزيارة</button> <a class="btn secondary" href="{{url_for('patient_detail',patient_id=patient.id)}}">إلغاء</a>
+</form>{% endblock %}

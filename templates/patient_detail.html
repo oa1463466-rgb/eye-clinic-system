@@ -1,0 +1,14 @@
+{% extends "base.html" %}{% block content %}
+<div class="section"><div class="patient-head"><div><h2>👤 {{patient.full_name}}</h2><div class="muted">رقم الملف: <b>{{patient.file_no}}</b> | الهاتف: {{patient.phone or '—'}} | الجنس: {{patient.gender or '—'}}</div></div>
+<div class="actions"><a class="btn" href="{{url_for('new_visit',patient_id=patient.id)}}">➕ زيارة وفحص عيون</a><a class="btn secondary" href="{{url_for('new_appointment',patient_id=patient.id)}}">📅 حجز موعد</a></div></div></div>
+<div class="grid2">
+<div class="section"><h3>البيانات الشخصية</h3><p><b>تاريخ الميلاد:</b> {{patient.birth_date or '—'}}</p><p><b>الهوية:</b> {{patient.national_id or '—'}}</p><p><b>العنوان:</b> {{patient.address or '—'}}</p><p><b>المهنة:</b> {{patient.occupation or '—'}}</p><p><b>ملاحظات:</b> {{patient.notes or '—'}}</p></div>
+<div class="section"><h3>المواعيد</h3>{% for a in appointments %}<p>📅 {{a.appointment_date}} — {{a.appointment_time}} — {{a.reason or 'مراجعة'}} <span class="badge">{{a.status}}</span></p>{% else %}<p class="muted">لا توجد مواعيد.</p>{% endfor %}</div></div>
+<div class="section"><h2>السجل الطبي للعيون</h2>
+{% for v in visits %}
+<div class="section" style="background:#fbfdff"><h3>زيارة {{v.visit_date}}</h3><p><b>الشكوى:</b> {{v.chief_complaint or '—'}}</p>
+<div class="eyes"><div class="eye"><h3>OD العين اليمنى</h3><p>VA: {{v.va_od or '—'}} | IOP: {{v.iop_od or '—'}}</p><p>Refraction: SPH {{v.sph_od or '—'}} / CYL {{v.cyl_od or '—'}} / AXIS {{v.axis_od or '—'}} / ADD {{v.add_od or '—'}}</p><p><b>Slit Lamp:</b> {{v.slit_lamp_od or '—'}}</p><p><b>Fundus:</b> {{v.fundus_od or '—'}}</p></div>
+<div class="eye"><h3>OS العين اليسرى</h3><p>VA: {{v.va_os or '—'}} | IOP: {{v.iop_os or '—'}}</p><p>Refraction: SPH {{v.sph_os or '—'}} / CYL {{v.cyl_os or '—'}} / AXIS {{v.axis_os or '—'}} / ADD {{v.add_os or '—'}}</p><p><b>Slit Lamp:</b> {{v.slit_lamp_os or '—'}}</p><p><b>Fundus:</b> {{v.fundus_os or '—'}}</p></div></div>
+<p><b>التشخيص:</b> {{v.diagnosis or '—'}}</p><p><b>العلاج:</b> {{v.treatment or '—'}}</p><p><b>المتابعة:</b> {{v.follow_up or '—'}}</p></div>
+{% else %}<p class="muted">لا توجد زيارات مسجلة. اضغط «زيارة وفحص عيون» لإضافة أول فحص.</p>{% endfor %}
+</div>{% endblock %}

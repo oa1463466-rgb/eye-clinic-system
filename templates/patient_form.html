@@ -1,0 +1,13 @@
+{% extends "base.html" %}{% block content %}
+<div class="section"><h2>تسجيل مريض جديد</h2><div class="muted">سيتم إنشاء رقم ملف تلقائياً: <b>{{file_no}}</b></div></div>
+<form method="post" class="section"><div class="form-grid">
+<div class="field"><label>رقم الملف</label><input value="{{file_no}}" disabled></div>
+<div class="field"><label>الاسم الكامل *</label><input name="full_name" required></div>
+<div class="field"><label>الجنس</label><select name="gender"><option value="">اختر</option><option>ذكر</option><option>أنثى</option></select></div>
+<div class="field"><label>تاريخ الميلاد</label><input type="date" name="birth_date"></div>
+<div class="field"><label>رقم الهاتف</label><input name="phone"></div>
+<div class="field"><label>رقم الهوية / البطاقة الوطنية</label><input name="national_id"></div>
+<div class="field"><label>المهنة</label><input name="occupation"></div>
+<div class="field"><label>العنوان</label><input name="address"></div>
+<div class="field full"><label>ملاحظات عامة</label><textarea name="notes"></textarea></div>
+</div><br><button class="btn success">💾 حفظ وفتح الملف</button> <a class="btn secondary" href="{{url_for('patients')}}">إلغاء</a></form>{% endblock %}
